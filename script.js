@@ -1,27 +1,23 @@
-let num = document.getElementById('number').value;
+
+let num = document.getElementById('number');
 let form = document.getElementById('new_form');
 let submit = document.getElementById('submit');
+let clear = document.getElementById('clear');
 let next = document.getElementById('next');
 let element = document.getElementById('div1');
 
 submit.addEventListener('click', function(e) {
-    form.className = "user_details show";
+    if(num.value >= 0) {
+        form.className = "user_details show";
+        for (let i = 1;i<num.value;i++) {
+            const clone = element.cloneNode(true);
+            element.after(clone);
+        }
+    }
     e.preventDefault();
 });
-
-function form_data()  {
-    const clone = element.cloneNode(true);
-    element.after(clone);
-
-    for(let i = 1; i<=4; i++) {
-    clone.addEventListener('click', function(e) {
-        form_data();
-        e.preventDefault();
-    });
-}
-}
-next.addEventListener('click',function(e) {
-    form_data();
+clear.addEventListener('click', function(e) {
+    form.className = "user_details hidden";
     e.preventDefault();
-});
+})
 
